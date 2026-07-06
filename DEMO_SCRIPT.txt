@@ -1,0 +1,40 @@
+[0:00 — HOOK]
+Planning travel can be stressful and disorganized, and typing sensitive details like passport numbers and email addresses on public sites risks exposing your private data. That is why I built ZenTravel—a secure, intelligent concierge agent designed to organize your next trip without compromising your privacy.
+
+[0:20 — WHAT IT IS]
+ZenTravel is a multi-agent travel concierge built on the Google Agent Development Kit 2.0 framework. It belongs to the Concierge Agents track and coordinates itinerary planning, live weather integration, flight and hotel searches, and secure simulated bookings.
+
+[0:40 — SHOW THE BANNER]
+(show assets/cover_page_banner.png)
+As you can see from our project banner, ZenTravel's core goals are simple: make travel planning automated, secure, and highly intelligent.
+
+[1:00 — ARCHITECTURE]
+(show assets/architecture_diagram.png)
+Let's walk through the architecture to see how it works under the hood. 
+Every query starts at the Security Checkpoint node, which scrubs PII and checks for prompt injections or compliance blocks before any LLM processing occurs. 
+If clean, it routes to the main Orchestrator agent. 
+The Orchestrator acts as our coordinator, using AgentTools to delegate tasks to two specialized sub-agents: the Itinerary Planner for building travel schedules, and the Booking Coordinator for researching travel options. 
+These sub-agents connect to a custom stdio MCP Server to fetch real-time weather forecasts, flight schedules, and hotel rates. 
+If the Orchestrator prepares a booking, it triggers a routing decision to pause at the human-in-the-loop Approval Gate, requiring explicit consent before calling the final node to confirm the booking.
+
+[2:00 — LIVE DEMO]
+(switch to playground at localhost:18081)
+Let's see this in action. (pause)
+I'll input a standard query: "Plan a 3-day trip to Tokyo starting 2026-10-10. Check the weather first, search for flights from NY, suggest a hotel, and prepare the booking."
+(pause)
+Notice how the Orchestrator coordinates with the sub-agents and retrieves Tokyo's clear weather, flight details on Sakura Air, and lodging options at the Zen Gardens Boutique Hotel. 
+Because this query involves a booking, the workflow pauses and presents us with the approval prompt in the chat: "Do you approve? (Yes/No)". 
+Once I type "Yes" and submit, the state updates to approved, the finalize node is triggered, and we receive our confirmed booking output!
+
+Let's test our compliance block. I'll enter: "Help me plan a flight and hotel in Cuba for next month."
+(pause)
+Instantly, the security node identifies "Cuba" as a restricted country and triggers a security block message.
+Now let's test PII redaction by entering: "My passport is AB1234567, find flights from London to Paris."
+(pause)
+The system scrubs the passport number completely, ensuring that sensitive data is never exposed.
+
+[3:00 — SECURITY & MCP]
+Our security node is highly robust, utilizing regex patterns to scrub sensitive data, intercept prompt injection keywords, and output structured JSON audit logs directly to standard error. Our custom MCP server manages standard tools for querying weather, flights, and hotels using stdio transport parameters.
+
+[3:30 — IMPACT / CLOSE]
+ZenTravel gives travelers a secure, unified experience, keeping sensitive data protected while automating the tedious steps of researching and booking trips. Thank you for listening, and feel free to check out our codebase!
