@@ -94,7 +94,7 @@ graph TD
    git add .
    git commit -m "Initial commit: zentravel ADK agent"
    git branch -M main
-   git remote add origin https://github.com/sayanikundu17-sketch/zentravel.git
+   git remote add origin https://github.com/TechSayani/zentravel.git
    git push -u origin main
    ```
 
