@@ -112,10 +112,10 @@ graph TD
 ## Assets
 
 ### Cover Page Banner
-![Cover Page Banner](file:///c:/Users/SAYANI/Desktop/AI%20Agents/adk-workspace/zentravel/assets/cover_page_banner.png)
+![Cover Page Banner](assets/cover_page_banner.png)
 
 ### Agent Workflow Diagram
-![Agent Workflow Diagram](file:///c:/Users/SAYANI/Desktop/AI%20Agents/adk-workspace/zentravel/assets/architecture_diagram.png)
+![Agent Workflow Diagram](assets/architecture_diagram.png)
 
 ## Demo Script
-A conversational narration script for presenting the ZenTravel concierge features is available in [DEMO_SCRIPT.txt](file:///c:/Users/SAYANI/Desktop/AI%20Agents/adk-workspace/zentravel/DEMO_SCRIPT.txt).
+A conversational narration script for presenting the ZenTravel concierge features is available in [DEMO_SCRIPT.txt](DEMO_SCRIPT.txt).
